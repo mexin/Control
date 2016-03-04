@@ -1,0 +1,45 @@
+<template name="projectComments">
+    <div class="box box-primary direct-chat direct-chat-primary">
+        <div class="box-header with-border">
+            <h4 class="pull-left header">
+                <i class="fa fa-comments"></i>
+                Comentarios
+            </h4>
+        </div>
+        <div class="box-footer">
+            <form class="form-comment" action="#" method="post">
+                <div class="input-group">
+                    <input type="text" autocomplete="off" name="comment" placeholder="Escribe tu comentario ..."
+                           class="form-control">
+                      <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary btn-flat">Enviar</button>
+                      </span>
+                </div>
+            </form>
+        </div>
+        <div class="box-body chat">
+            <div class="box-body">
+                {{#each comments}}
+                    <div class="item">
+                        <!--<div class="direct-chat-info clearfix">
+                            <span class="direct-chat-name pull-left">{{userComment.profile.name}}</span>
+                            <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+                        </div>-->
+                        <img class="widget-user-image" src="/images/default-user-image.png" alt="Message User Image">
+                        <!--<div class="direct-chat-text">
+                            {{comment}}
+                        </div>-->
+                        <p class="message">
+                            <a href="#" class="name">
+                                {{userComment.profile.name}}
+                                <small class="text-muted"><i class="fa fa-clock-o"></i> {{createdAt.momento}} | {{createdAt.fecha}}</small>
+
+                            </a>
+                            {{comment}}
+                        </p>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,65 @@
+<template name="usuarios">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h3>
+                Staff
+                <small>Control de Usuarios</small>
+            </h3>
+        </section>
+        <section class="content">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"></h3>
+
+                    <div class="btn-group pull-right">
+                        <a id="usuariosNew" class="btn btn-xs btn-default"><i class="fa fa-plus"></i> Crear Nuevo</a>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Departamento</th>
+                            <th>Creado</th>
+                            <th>Rol</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each usuarios}}
+                            <tr>
+                                <td id="usuarioId" data-id="{{_id}}"><a href="/profile/{{_id}}">{{profile.name}}</a></td>
+                                <td>{{username}}</td>
+                                <td>{{profile.departamento}}</td>
+                                <td>{{createdAt}}</td>
+                                <td>{{roles}}</td>
+                                <td>
+                                    <center>
+                                        <div class="btn-group">
+                                            <a id="editUsuario" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                                            <a id="deleteUsuario" class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </center>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- Your Page Content Here -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+</template>

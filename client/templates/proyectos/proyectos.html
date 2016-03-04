@@ -1,0 +1,72 @@
+<template name="proyectos">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h3>
+                Proyectos
+                <small>Nuestros proyectos</small>
+            </h3>
+        </section>
+        <section class="content">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Proyectos</h3>
+
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-xs btn-default" href="/proyectos/nuevo"><i class="fa fa-plus"></i> Crear Nuevo</a>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Estado</th>
+                            <th>Proyecto</th>
+                            <th>Cuenta</th>
+                            <th>Fecha de Entrega</th>
+                            <th>Progreso</th>
+                            <th>Responsable</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#if Template.subscriptionsReady}}
+                            {{#each proyectos}}
+                                <tr>
+                                    <td class="text-center"><span class="label {{estadoCss}}">{{estado}}</span></td>
+                                    <td><a href="/proyectos/{{_id}}">{{nombre}}</a></td>
+                                    <td>{{cuenta}}</td>
+                                    <td>{{fechaEntrega.fecha}}</td>
+                                    <td>
+                                        <div class="progress progress-xs progress-striped active">
+                                            <div class="progress-bar progress-bar-success"
+                                                 style="width: {{porcentajeTareas}}%"></div>
+                                        </div>
+                                    </td>
+                                    <td>{{responsable}}</td>
+                                    <td class="text-center">
+
+                                        <div class="btn-group">
+                                            <a class="btn btn-xs btn-default" href="/proyectos/{{_id}}"><i
+                                                    class="fa fa-eye"></i></a>
+                                            <a href="/proyectos/edit/{{_id}}" class="btn btn-xs btn-default"><i
+                                                    class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        {{else}}
+                            <div class="loading">
+                                <i class="fa fa-circle-o-notch fa-3x fa-spin"></i>
+                            </div>
+                        {{/if}}
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>

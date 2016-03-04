@@ -1,0 +1,22 @@
+<template name="clientesNuevo">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Clientes
+                <small>Nuevo Cliente</small>
+            </h1>
+        </section>
+        <section class="content">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Detalles de Proyecto</h3>
+                    </div>
+                    <div class="box-body">
+                        {{> quickForm collection="Clientes" id="clientesNuevo" buttonContent="Crear" type="insert"}}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>

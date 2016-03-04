@@ -1,0 +1,303 @@
+<template name="_appHeader">
+
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="{{pathFor 'dashboard'}}" class="logo"><b>Control</b>CRD</a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    {{#if currentUser}}
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <!--<li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 messages</li>
+                                <li>
+                                    &lt;!&ndash; inner menu: contains the actual data &ndash;&gt;
+                                    <ul class="menu">
+                                        <li>
+                                            &lt;!&ndash; start message &ndash;&gt;
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="/images/default-user-image.png" class="img-circle"
+                                                         alt="User Image"/>
+                                                </div>
+                                                <h4>
+                                                    Support Team
+                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        &lt;!&ndash; end message &ndash;&gt;
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="/images/default-user-image.png" class="img-circle"
+                                                         alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    AdminLTE Design Team
+                                                    <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="/images/user4-128x128.jpg" class="img-circle"
+                                                         alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    Developers
+                                                    <small><i class="fa fa-clock-o"></i> Today</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="images/user3-128x128.jpg" class="img-circle"
+                                                         alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    Sales Department
+                                                    <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="images/user4-128x128.jpg" class="img-circle"
+                                                         alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    Reviewers
+                                                    <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">See All Messages</a>
+                                </li>
+                            </ul>
+                        </li>-->
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <!--TODO ocultar cuando no hay nada o es 0-->
+                                {{#if notifications}}
+                                <span class="label label-warning">{{notificationsTotal.num}}</span>
+                                {{/if}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Tienes {{notificationsTotal.num}} {{notificationsTotal.text}}</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        {{#each notifications}}
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-tasks text-aqua"></i> {{descripcion}}
+                                                </a>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="/profile/{{currentUser._id}}">Ver Todas</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-flag-o"></i>
+                                <span class="label label-danger">{{proyectostTotal.num}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Tienes {{proyectostTotal.num}} {{proyectostTotal.text}} en proceso
+                                </li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        {{#each proyectos}}
+                                            <li>
+                                                <!-- Task item -->
+                                                <a href="/proyectos/{{_id}}">
+                                                    <h3>
+                                                        {{nombre}}
+                                                        <small class="pull-right">{{porcentajeTareas}}%</small>
+                                                    </h3>
+                                                    <div class="progress xs">
+                                                        <div class="progress-bar progress-bar-aqua"
+                                                             style="width: {{porcentajeTareas}}%">
+                                                            <span class="sr-only">{{porcentajeTareas}}
+                                                                % Completado</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="/proyectos">Ver todos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="/images/default-user-image.png" class="user-image" alt="User Image"/>
+                                <span class="hidden-xs">{{currentUser.profile.name}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="/images/default-user-image.png" class="img-circle" alt="User Image"/>
+
+                                    <p>
+                                        {{currentUser.profile.name}}
+                                        <small>{{currentUser.profile.departamento}}</small>
+                                        <small>{{createdAt}}</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <!-- <li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </li> -->
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="/profile/{{currentUser._id}}"
+                                           class="btn btn-default btn-flat">Perfil</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" data-action="logout" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    {{else}}
+                        <a href="{{ pathFor 'atSignIn' }}" class="btn btn-default navbar-btn">Sign in</a>
+                    {{/if}}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="/images/default-user-image.png" class="img-circle" alt="User Image"/>
+                </div>
+                <div class="pull-left info">
+                    <p>{{currentUser.profile.name}}</p>
+                    <a href="#"><i class="fa fa-circle text-{{onlineStatus.color}}"></i> {{onlineStatus.text}}</a>
+                </div>
+            </div>
+            <!-- search form (Optional) -->
+            <!--<form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search..." />
+                    <span class="input-group-btn">
+                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+                </div>
+            </form>-->
+            <!-- /.search form -->
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li class="header">MENU</li>
+                <!-- Optionally, you can add icons to the links -->
+                <li><a href="{{ pathFor 'dashboard' }}"><i class="fa fa-tachometer"></i>Dashboard</a></li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-briefcase"></i>
+                        <span>Briefs</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        {{#if isInRole 'admin'}}
+                            <li><a href="{{ pathFor 'briefNew' }}"><i class="fa fa-circle-o"></i>Nuevo</a>
+                            </li>
+                        {{/if}}
+                        <li><a href="{{ pathFor 'briefs' }}"><i class="fa fa-circle-o"></i>Ver Todos</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-th"></i>
+                        <span>Proyectos</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        {{#if isInRole 'admin'}}
+                            <li><a href="{{ pathFor 'proyectoNuevo' }}"><i class="fa fa-circle-o"></i>Nuevo</a>
+                            </li>
+                        {{/if}}
+                        <li><a href="{{ pathFor 'proyectos' }}"><i class="fa fa-circle-o"></i>Ver Todos</a>
+                        </li>
+                    </ul>
+                </li>
+                {{#if isInRole 'admin'}}
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-building"></i>
+                            <span>Cuentas</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ pathFor 'clientesNuevo' }}"><i class="fa fa-circle-o"></i>Nuevo Cliente</a>
+                            </li>
+                            <li><a href="{{ pathFor 'clientes' }}"><i class="fa fa-circle-o"></i>Ver Todos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-users"></i>
+                            <span>Staff</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a id="usuariosNew" href="#"><i class="fa fa-circle-o"></i>Nuevo Usuario</a>
+                            </li>
+                            <li><a href="{{ pathFor 'usuarios' }}"><i class="fa fa-circle-o"></i>Ver Todos</a>
+                            </li>
+                        </ul>
+                    </li>
+                {{/if}}
+
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+</template>

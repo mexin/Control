@@ -1,0 +1,56 @@
+<template name="usuariosModal">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Crear/Editar Usuario</h4>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="inputNombre">Nombre</label>
+                        <input type="text" class="form-control" id="inputNombre" placeholder="Nombre completo" value="{{usuario.profile.name}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Introduce email" value="{{usuario.username}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPasswordCheck">Verificación de Password</label>
+                        <input type="password" class="form-control" id="inputPasswordCheck" placeholder="Vuelve a teclear el Password">
+                    </div>
+                    <div class="form-group">
+                        <label>Departamento</label>
+                        <select id="inputDepto" class="form-control" >
+                            <option selected="{{selectedDepto 'Cuentas'}}">Cuentas</option>
+                            <option selected="{{selectedDepto 'Diseño'}}">Diseño</option>
+                            <option selected="{{selectedDepto 'Desarrollo Web'}}">Desarrollo Web</option>
+                            <option selected="{{selectedDepto 'Social Media'}}">Social Media</option>
+                            <option selected="{{selectedDepto 'Relaciones Públicas'}}">Relaciones Públicas</option>
+                            <option selected="{{selectedDepto 'Dirección'}}">Dirección</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Rol</label>
+                        <select id="inputRol" class="form-control">
+                            <option selected="{{selectedRol 'admin'}}">admin</option>
+                            <option selected="{{selectedRol 'empleado'}}">empleado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="usuarioGuardar" type="button" class="btn btn-primary btn-flat">Guardar</button>
+                    <button type="button" class="btn btn-danger btn-flat pull-left" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>

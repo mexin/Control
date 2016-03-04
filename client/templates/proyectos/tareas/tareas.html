@@ -1,0 +1,176 @@
+<template name="_tareas">
+    <div class="col-md-12 no-padding">
+        <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right ui-sortable-handle">
+                <li class="pull-left header">
+                    <i class="fa fa-user"></i>
+                    Tareas Personales
+                </li>
+
+                <li class="active">
+                    <a href="#tareas-tab" data-toggle="tab">
+                        Tareas
+                        <span class="label label-info">{{tareasNoTerminadas}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#terminadas-tab" data-toggle="tab">
+                        Terminadas
+                        <span class="label label-success">{{tareasTerminadas}}</span>
+                    </a>
+                </li>
+
+            </ul>
+            <div class="tab-content no-padding">
+                <div class="tab-pane" id="terminadas-tab">
+                    <ul class="todo-list ui-sortable">
+                        {{#each tareasTerminadasView}}
+                            <li class="todoItem {{tareaClass}}">
+                                <!-- todos text -->
+                                {{#if todoEdit}}
+
+                                    <input type="text" class="form-control col-xs-4" id="tareaTexEdit"
+                                           value="{{tarea}}">
+
+                                {{else}}
+                                    <!-- drag handle -->
+                                          <span class="handle ui-sortable-handle">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                            <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                    <!-- checkbox -->
+                                    <input id="terminadoCheck" type="checkbox" checked="{{terminado}}"
+                                           name="terminadoCheck"
+                                           class="toggle-checked icheckbox_flat-green">
+                                    <span id="tareaText" class="text">{{tarea}}</span>
+                                    <!-- Emphasis label -->
+                                    <!--<small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins
+                                    </small>-->
+                                    <small class="label label-warning" rel="tooltip"
+                                           title="{{allocator.tooltip}}">
+                                        <i class="fa fa-user"></i>
+                                        {{allocator.label}}
+                                    </small>
+                                    {{#if prioridadEditHelper}}
+                                        <div class="form-group">
+                                            <select id="inputPrioridad" class="">
+                                                <option selected="{{selectedPrioridad '1'}}" value="1">
+                                                    Urgeeee!!!
+                                                </option>
+                                                <option selected="{{selectedPrioridad '2'}}" value="2">
+                                                    Normal
+                                                </option>
+                                                <option selected="{{selectedPrioridad '3'}}" value="3">Baja
+                                                </option>
+                                            </select>
+                                        </div>
+                                    {{else}}
+                                        <small id="prioridadEdit" class="label {{prioridadValores.css}}">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{prioridadValores.text}}
+                                        </small>
+                                    {{/if}}
+                                    {{#if fechaEntregaHelper}}
+                                        <div class="form-group">
+                                            <input id="inputFechaEntrega" type="date" value="{{fechaEntrega}}">
+                                        </div>
+                                    {{else}}
+                                        <small id="fechaEntregaEdit" class="label label-default" rel="tooltip"
+                                               title="">
+                                            <i class="fa fa-clock-o"></i>
+                                            {{#if deadline}}
+                                                {{fechaEntrega.diasFaltantes}}
+                                            {{/if}}
+                                        </small>
+                                    {{/if}}
+                                    <!-- General tools such as edit or delete-->
+                                    <div class="tools">
+                                        <i class="delete fa fa-times"></i>
+                                    </div>
+                                {{/if}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="tab-pane active" id="tareas-tab">
+                    <ul class="todo-list ui-sortable">
+                        <button id="crearTarea" type="button" class="btn btn-info btn-sm margin pull-right">
+                            <i
+                                    class="fa fa-plus"></i> Crear Nueva
+                        </button>
+                    </ul>
+                    <ul class="todo-list ui-sortable">
+                        {{#each tareas}}
+                            <li class="todoItem {{tareaClass}}">
+                                <!-- todos text -->
+                                {{#if todoEdit}}
+
+                                    <input type="text" class="form-control col-xs-4" id="tareaTexEdit"
+                                           value="{{tarea}}">
+
+                                {{else}}
+                                    <!-- drag handle -->
+                                          <span class="handle ui-sortable-handle">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                            <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                    <!-- checkbox -->
+                                    <input id="terminadoCheck" type="checkbox" checked="{{terminado}}"
+                                           name="terminadoCheck"
+                                           class="toggle-checked icheckbox_flat-green">
+                                    <span id="tareaText" class="text">{{tarea}}</span>
+                                    <!-- Emphasis label -->
+                                    <!--<small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins
+                                    </small>-->
+                                    <small class="label label-warning" rel="tooltip"
+                                           title="{{allocator.tooltip}}">
+                                        <i class="fa fa-user"></i>
+                                        {{allocator.label}}
+                                    </small>
+                                    {{#if prioridadEditHelper}}
+                                        <div class="form-group">
+                                            <select id="inputPrioridad" class="">
+                                                <option selected="{{selectedPrioridad '1'}}" value="1">
+                                                    Urgeeee!!!
+                                                </option>
+                                                <option selected="{{selectedPrioridad '2'}}" value="2">
+                                                    Normal
+                                                </option>
+                                                <option selected="{{selectedPrioridad '3'}}" value="3">Baja
+                                                </option>
+                                            </select>
+                                        </div>
+                                    {{else}}
+                                        <small id="prioridadEdit" class="label {{prioridadValores.css}}">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{prioridadValores.text}}
+                                        </small>
+                                    {{/if}}
+                                    {{#if fechaEntregaHelper}}
+                                        <div class="form-group">
+                                            <input id="inputFechaEntrega" type="datetime-local"> <!-- Revisar si se necesitan horas, de lo contrario usar date -->
+                                        </div>
+                                    {{else}}
+                                        <small id="fechaEntregaEdit" class="label label-default" rel="tooltip"
+                                               title="">
+                                            <i class="fa fa-clock-o"></i>
+                                            {{#if deadline}}
+                                                &nbsp;&nbsp;
+                                                {{fechaEntrega.diasFaltantes}}
+                                            {{/if}}
+                                        </small>
+                                    {{/if}}
+                                    <!-- General tools such as edit or delete-->
+                                    <div class="tools">
+                                        <i class="delete fa fa-times"></i>
+                                    </div>
+                                {{/if}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

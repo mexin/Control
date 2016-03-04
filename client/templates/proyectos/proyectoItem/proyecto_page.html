@@ -1,0 +1,265 @@
+<template name="proyectosView">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                {{nombre}}
+                <small>{{cuenta}}</small>
+            </h1>
+            <a href="/proyectos/edit/{{_id}}" class="pull-right btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+        </section>
+        <section class="content">
+            <div class="col-md-3">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Información</h3>
+                    </div>
+                    <div class="box-body">
+                        <strong><i class="fa fa-calendar margin-r-5"></i> Fecha de Entrega</strong>
+                        <p class="text-muted">
+                            {{fechaEntrega.fecha}} - <em>{{fechaEntrega.diasFaltantes}}</em>
+                        </p>
+                        <strong><i class="fa fa-calendar margin-r-5"></i> Creado</strong>
+                        <p class="text-muted">
+                            {{createdAt}}
+                        </p>
+                        <hr>
+                        <strong><i class="fa fa-check-square-o margin-r-5"></i> Status</strong>
+                        {{#if estadoEditHelper}}
+                            <div class="form-group">
+                                <select id="inputEdo" class="form-control">
+                                    <option selected="{{selectedEdo 'En Proceso'}}">En Proceso</option>
+                                    <option selected="{{selectedEdo 'Terminado'}}">Terminado</option>
+                                    <option selected="{{selectedEdo 'Cancelado'}}">Cancelado</option>
+                                </select>
+                            </div>
+                            <button id="estadoSave" type="button" class="btn btn-success btn-sm">Guardar</button>
+                            <button id="estadoCancel" type="button" class="btn btn-danger btn-sm">Cancelar</button>
+                        {{else}}
+                            <a id="estadoProyecto" href="#">
+                                <span class="label {{estadoCss}}">{{estado}}</span>
+                            </a>
+                        {{/if}}
+                        <hr>
+                        <strong><i class="fa fa-circle-o margin-r-5"></i> Proyecto</strong>
+                        <p class="text-muted">
+                            {{nombre}}
+                        </p>
+                        <hr>
+                        <strong><i class="fa fa-user margin-r-5"></i> Cliente/Cuenta</strong>
+                        <p class="text-muted">{{cuenta}}</p>
+                        <hr>
+                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Descripción</strong>
+                        <p>{{#markdown}} {{descripcion}} {{/markdown}}</p>
+                    </div>
+                </div>
+                <!--<div class="box box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Acciones</h3>
+
+                        <div class="box-tools">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body no-padding">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="active"><a href="#"><i class="fa fa-info"></i> General </a></li>
+                            <li><a href="#"><i class="fa fa-clock-o"></i> Tareas <span
+                                    class="label label-primary pull-right">12</span></a></li>
+                            <li><a href="#"><i class="fa fa-file-text-o"></i> Reporte</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+            </div>
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="col-md-5 no-padding">
+
+                        <div class="box box-widget widget-user">
+                            <div class="widget-user-header bg-aqua-active">
+                                <h3 class="widget-user-username">{{responsable}}</h3>
+                                <h5 class="widget-user-desc">{{responsableUser.profile.departamento}}</h5>
+                            </div>
+                            <div class="widget-user-image">
+                                <img class="img-circle" src="/images/default-user-image.png" alt="User Avatar">
+                            </div>
+                            <div class="box-footer">
+                                <div class="row">
+                                    <div class="col-sm-6 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">{{userTareasPendientes}}</h5>
+                                            <span class="description-text">Pendientes</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">{{userTareasTermindas}}</h5>
+                                            <span class="description-text">Terminadas</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="info-box bg-aqua">
+                            <span class="info-box-icon"><i class="fa fa-tasks"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Tareas Terminadas</span>
+                                <span class="info-box-number">{{tareasTerminadas}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: {{porcentajeTareas}}%"></div>
+                                </div>
+                                  <span class="progress-description">
+                                    {{tareasNoTerminadas}} por terminar.
+                                  </span>
+                            </div>
+                        </div>
+                        <!--<div class="col-md-6 no-padding">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-aqua"><i class="fa fa-clock-o"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Horas Invertidas</span>
+                                    <span class="info-box-number">1,410</span>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs pull-right ui-sortable-handle">
+                            <li class="pull-left header">
+                                <i class="fa fa-inbox"></i>
+                                Tareas del Proyecto
+                            </li>
+                            <li class="active">
+                                <a href="#tareas-tab" data-toggle="tab">
+                                    Tareas
+                                    <span class="label label-info">{{tareasNoTerminadas}}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#terminadas-tab" data-toggle="tab">
+                                    Terminadas
+                                    <span class="label label-success">{{tareasTerminadas}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content no-padding">
+                            <div class="tab-pane" id="terminadas-tab">
+                                <ul class="todo-list ui-sortable">
+                                    {{#each tareasTerminadasView}}
+                                        <li class="todoItem {{tareaClass}}">
+                                            <!-- todos text -->
+                                            {{#if todoEdit}}
+                                                <input type="text" class="form-control col-xs-4" id="tareaTexEdit"
+                                                       value="{{tarea}}">
+                                            {{else}}
+                                                <span class="handle ui-sortable-handle">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                            <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                                <input id="terminadoCheck" type="checkbox" checked="{{terminado}}"
+                                                       name="terminadoCheck"
+                                                       class="toggle-checked icheckbox_flat-green">
+                                                <span id="tareaText" class="text">{{tarea}}</span>
+                                                <small class="label label-warning" rel="tooltip"
+                                                       title="{{allocator.tooltip}}">
+                                                    <i class="fa fa-user"></i>
+                                                    {{allocator.label}}
+                                                </small>
+                                                {{#if prioridadEditHelper}}
+                                                    <div class="form-group">
+                                                        <select id="inputPrioridad" class="">
+                                                            <option selected="{{selectedPrioridad '1'}}" value="1">
+                                                                Urgeeee!!!
+                                                            </option>
+                                                            <option selected="{{selectedPrioridad '2'}}" value="2">
+                                                                Normal
+                                                            </option>
+                                                            <option selected="{{selectedPrioridad '3'}}" value="3">Baja
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                {{else}}
+                                                    <small id="prioridadEdit" class="label {{prioridadValores.css}}">
+                                                        <i class="fa fa-exclamation-circle"></i>
+                                                        {{prioridadValores.text}}
+                                                    </small>
+                                                {{/if}}
+                                                <small class="label label-default" rel="tooltip"
+                                                       title="">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </small>
+                                                <div class="tools">
+                                                    <i class="delete fa fa-times"></i>
+                                                </div>
+                                            {{/if}}
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                            <div class="tab-pane active" id="tareas-tab">
+                                <ul class="todo-list ui-sortable">
+                                    <button id="crearTarea" type="button" class="btn btn-info btn-sm margin pull-right">
+                                        <i class="fa fa-plus"></i> Crear Nueva
+                                    </button>
+                                </ul>
+                                <ul class="todo-list ui-sortable">
+                                    {{#each tareas}}
+                                        <li class="todoItem {{tareaClass}}">
+                                            {{#if todoEdit}}
+                                                <input type="text" class="form-control col-xs-4" id="tareaTexEdit"
+                                                       value="{{tarea}}">
+                                            {{else}}
+                                                <span class="handle ui-sortable-handle">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                            <i class="fa fa-ellipsis-v"></i>
+                                          </span>
+                                                <input id="terminadoCheck" type="checkbox" checked="{{terminado}}"
+                                                       name="terminadoCheck"
+                                                       class="toggle-checked icheckbox_flat-green">
+                                                <span id="tareaText" class="text">{{tarea}}</span>
+                                                <small class="label label-warning" rel="tooltip"
+                                                       title="{{allocator.tooltip}}">
+                                                    <i class="fa fa-user"></i>
+                                                    {{allocator.label}}
+                                                </small>
+                                                {{#if prioridadEditHelper}}
+                                                    <div class="form-group">
+                                                        <select id="inputPrioridad" class="">
+                                                            <option selected="{{selectedPrioridad '1'}}" value="1">
+                                                                Urgeeee!!!
+                                                            </option>
+                                                            <option selected="{{selectedPrioridad '2'}}" value="2">
+                                                                Normal
+                                                            </option>
+                                                            <option selected="{{selectedPrioridad '3'}}" value="3">Baja
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                {{else}}
+                                                    <small id="prioridadEdit" class="label {{prioridadValores.css}}">
+                                                        <i class="fa fa-exclamation-circle"></i>
+                                                        {{prioridadValores.text}}
+                                                    </small>
+                                                {{/if}}
+
+                                                <div class="tools">
+                                                    <i class="delete fa fa-times"></i>
+                                                </div>
+                                            {{/if}}
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                    </div>
+                    {{> projectComments}}
+                </div>
+            </div>
+        </section>
+    </div>
+</template>

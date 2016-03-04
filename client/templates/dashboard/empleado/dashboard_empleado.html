@@ -1,0 +1,54 @@
+<template name="dashboardEmpleado">
+    <section class="content">
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-header">
+                    <i class="fa fa-th"></i>
+                    <h3 class="box-title">Mis Proyectos en Proceso</h3>
+
+                    <div class="btn-group pull-right">
+
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Estado</th>
+                            <th>Proyecto</th>
+                            <th>Responsable</th>
+                            <th>Fecha de Entrega</th>
+                            <th>Progreso</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each proyectos}}
+                            <tr>
+                                <td class="text-center"><span class="label {{estadoCss}}">{{estado}}</span></td>
+                                <td><a href="/proyectos/{{_id}}">{{nombre}}</a></td>
+                                <td>{{responsable}}</td>
+                                <td>{{fechaEntrega.fecha}}</td>
+                                <td>
+                                    <div class="progress progress-xs progress-striped active">
+                                        <div class="progress-bar progress-bar-success"
+                                             style="width: {{porcentajeTareas}}%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="box-footer text-center">
+                    <a href="/proyectos" class="text-uppercase">Ver todos...</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            {{> _tareas}}
+        </div>
+    </section>
+</template>
