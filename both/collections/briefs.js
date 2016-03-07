@@ -1,7 +1,7 @@
 Briefs = new Mongo.Collection('briefs');
 
 Briefs.attachSchema(new SimpleSchema({
-    campaña: {
+    camp: {
         type: String,
         label: "Campaña",
         max: 40

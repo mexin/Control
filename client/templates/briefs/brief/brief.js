@@ -1,22 +1,22 @@
-Template.briefs.helpers({
-    briefs: function () {
-        return Briefs.find({}, {"sort": [['createdAt', 'desc']]});
+Template.briefView.helpers({
+    createdAt: function () {
+        return moment(this.createdAt).format("DD MMMM YYYY");
     }
 });
 
-Template.briefs.events({
-    //add your events here
+Template.briefView.events({
+
 });
 
-Template.briefs.onCreated(function () {
-    //add your statement here
+Template.briefView.onCreated(function () {
+
 });
 
-Template.briefs.onRendered(function () {
-    //add your statement here
+Template.briefView.onRendered(function () {
+
 });
 
-Template.briefs.onDestroyed(function () {
-    //add your statement here
+Template.briefView.onDestroyed(function () {
+
 });
 

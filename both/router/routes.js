@@ -147,7 +147,7 @@ Router.route('/profile/:_id', {
 
 //acceso con login solamente
 Router.plugin('ensureSignedIn', {
-    only: ['dashboard', 'proyectos', 'briefs', 'briefNew', 'proyectoEdit', 'proyectosView', 'clientes', 'proyectoNuevo', 'clientesNuevo', 'usuarios']
+    only: ['dashboard', 'proyectos', 'briefs', 'briefView', 'proyectoEdit', 'proyectosView', 'clientes', 'proyectoNuevo', 'clientesNuevo', 'usuarios']
 });
 
 var requireAdminRole = function () {
