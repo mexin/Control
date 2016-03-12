@@ -1,8 +1,8 @@
 Meteor.startup(function () {
   smtp = {
-    username: 'control@creativosrdmx.com',
-    password: 'Contr0l@31975264',
-    server: 'mail.creativosrdmx.com',
+    username: 'user@email.com',
+    password: 'password',
+    server: 'server',
     port: 465
   }
 
@@ -24,31 +24,18 @@ Meteor.startup(function () {
   }
 
   PrettyEmail.options = {
-    from: 'ControlCRD <control@creativosrdmx.com>',
-    logoUrl: 'http://www.creativosrd.com/Logo/CreativosRD.png',
-    companyName: 'Creativos RD',
-    companyUrl: 'http://www.creativosrd.com',
-    companyAddress: 'Guadalajara, México',
+    from: 'USER <user@email.com>',
+    logoUrl: 'logo',
+    companyName: 'Company Name',
+    companyUrl: 'http://www.company.com',
+    companyAddress: 'Address',
     companyTelephone: '',
-    companyEmail: 'info@creativosrd.com',
-    siteName: 'Control CRD'
+    companyEmail: 'company@email.com',
+    siteName: 'Control'
   }
 
-  Accounts.emailTemplates.from = 'ControlCRD <control@creativosrdmx.com>';
+  Accounts.emailTemplates.from = 'USER <user@email.com>';
 
-  //Accounts.emailTemplates = {
-  //    from: 'Quiero Reviews <promo@quiero-recordings.com>',
-  //    siteName: 'QuieroReviews',
-  //    verifyEmail: {
-  //        subject: function (user) {
-  //            return 'Verification email from Quiero Reviews';
-  //        },
-  //        text: function (user, url) {
-  //            return 'Hi,\n' +
-  //                'Please open the link below to verify your account on our Platform:\n' + url;
-  //        }
-  //    }
-  //}
 
 
 });

@@ -21,7 +21,7 @@ Meteor.methods({
             subject: 'Nuevo Proyecto Asignado',
             heading: data.nombre,
             buttonText: 'Ver proyecto',
-            buttonUrl: 'http://control.creativosrdmx.com/proyectos/'+ data._id,
+            buttonUrl: 'http://controldemo.luismexin.me/proyectos/'+ data._id,
             message: "<b>Deadline: </b>" + fecha.num + "<b> En: </b>" + fecha.esc + "<br>" +
             "<b>Cuenta: </b>" + data.cuenta + "<br>" +
             "<b>Descripción: </b>" + data.descripcion + "<br>"
@@ -38,7 +38,7 @@ Meteor.methods({
             subject: 'Nueva Tarea Asignada',
             heading: proj.nombre,
             buttonText: 'Ver tarea',
-            buttonUrl: 'http://control.creativosrdmx.com/proyectos/'+ proj._id,
+            buttonUrl: 'http://controldemo.luismexin.me/proyectos/'+ proj._id,
             message: "<b>Tarea: </b>" + tarea.tarea + "<br>" +
             "<b>Asignada Por: </b>" + tarea.allocatorName + "<br>"
         });

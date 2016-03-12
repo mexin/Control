@@ -1,21 +1,18 @@
-# meteor-admin-lte
+# Control WebApp for Agencies
 
-Incorporates the AdminLTE 2 styles into Differential's boilerplate.
+Demo of a Task/Proyect/Briefs/Client App 
 
-![Boilerplate screenshot](http://d1b12n79so5csg.cloudfront.net/adminlte-screenshot.png)
+Done using MeteorJS
 
-### Docs
-* [Differential Boilerplate](https://github.com/Differential/meteor-boilerplate)
-* [AdminLTE 2](http://almsaeedstudio.com/themes/AdminLTE/documentation/index.html)
 
-### Installation
+###Before you try it there's some changes you have to make:
 
-1. Clone this repo to `<yourapp>`
+Add your custom smtp credentials
+/server/lib/email.js
 
-  `git clone https://github.com/jtolla/meteor-admin-lte.git <yourapp>`
+Create your custom Admin Login
+/server/seeds/users.js
 
-2. Remove `.git`
+Remove .git 
 
-  `cd <yourapp> && rm -rf .git`
-
-3. Start coding!
+Work still on progress (Got to refactor a bunch of stuff, sorry about that)
